@@ -6,6 +6,7 @@ import CustomDrawerContent from './navigation/CustomDrawerContent';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import { ThemeContext } from './context/ThemeContext';
+import ProfileScreen from './screens/ProfileScreen';
 
 
 
@@ -25,12 +26,24 @@ export default function App() {
             screenOptions={{
               headerStyle: { backgroundColor: toolbarColor },
               headerTintColor: '#fff',
+              // Drawer active item styling
+              drawerActiveTintColor: '#ffffff',
+              drawerActiveBackgroundColor: toolbarColor,
+              drawerInactiveTintColor: '#333',
             }}
           >
             <Drawer.Screen
               name="Forms"
               component={FormsScreen}
               options={{ title: 'Alfredo Giacinti Reyes' }}
+            />
+            <Drawer.Screen 
+              name="Profile" 
+              component={ProfileScreen} 
+              options={{ 
+                title: 'Mi Perfil',
+                headerTitle: 'Perfil de Usuario'
+              }} 
             />
           </Drawer.Navigator>
         </NavigationContainer>
