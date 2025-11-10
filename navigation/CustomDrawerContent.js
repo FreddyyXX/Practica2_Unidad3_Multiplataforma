@@ -8,7 +8,7 @@ const colors = ['#1976d2', '#d32f2f', '#388e3c', '#f57c00', '#6a1b9a', '#0097a7'
 
 export default function CustomDrawerContent(props) {
   const { setToolbarColor, userName } = useContext(ThemeContext);
-    // determine current focused route so we can style active item
+    
     const focusedRoute = props.state && props.state.routeNames && typeof props.state.index === 'number'
         ? props.state.routeNames[props.state.index]
         : null;
@@ -37,6 +37,22 @@ export default function CustomDrawerContent(props) {
                     icon={() => <Ionicons name="person-outline" size={20} />}
                     style={focusedRoute === 'Profile' ? styles.drawerItemActive : null}
                     labelStyle={focusedRoute === 'Profile' ? styles.drawerLabelActive : null}
+                />
+                <DrawerItem
+                    label="Display"
+                    focused={focusedRoute === 'Display'}
+                    onPress={() => props.navigation.navigate('Display')}
+                    icon={() => <Ionicons name="images-outline" size={20} />}
+                    style={focusedRoute === 'Display' ? styles.drawerItemActive : null}
+                    labelStyle={focusedRoute === 'Display' ? styles.drawerLabelActive : null}
+                />
+                <DrawerItem
+                    label="Prueba"
+                    focused={focusedRoute === 'Prueba'}
+                    onPress={() => props.navigation.navigate('Prueba')}
+                    icon={() => <Ionicons name="images-outline" size={20} />}
+                    style={focusedRoute === 'Prueba' ? styles.drawerItemActive : null}
+                    labelStyle={focusedRoute === 'Prueba' ? styles.drawerLabelActive : null}
                 />
             </View>
 

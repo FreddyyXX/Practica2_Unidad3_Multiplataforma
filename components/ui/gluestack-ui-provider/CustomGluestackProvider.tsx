@@ -18,7 +18,16 @@ export function GluestackUIProvider({
   const { colorScheme, setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    setColorScheme(mode);
+    try {
+      if (typeof setColorScheme === 'function') {
+        setColorScheme(mode);
+      }
+    } catch (err) {
+      // NativeWind may throw if darkMode is not configured for manual toggling.
+      // Avoid crashing the app during startup; log a warning instead.
+      // eslint-disable-next-line no-console
+      console.warn('GluestackUIProvider: unable to set color scheme manually', err);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 

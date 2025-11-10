@@ -1,14 +1,14 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import FormsScreen from './screens/FormsScreen';
+import DisplayScreen from './screens/DisplayScreen';
 import CustomDrawerContent from './navigation/CustomDrawerContent';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import { ThemeContext } from './context/ThemeContext';
 import ProfileScreen from './screens/ProfileScreen';
-
-
+import PruebaScreen from './screens/PruebaScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,16 +17,16 @@ export default function App() {
   const [userName] = useState('Alfredo Giacinti Reyes');
 
   return (
-    <GluestackUIProvider config={config}>
-      <ThemeContext.Provider value={{ toolbarColor, setToolbarColor, userName }}>
-        <NavigationContainer>
+    <ThemeContext.Provider value={{ toolbarColor, setToolbarColor, userName }}>
+      <NavigationContainer>
+        <GluestackUIProvider config={config}>
+          
           <Drawer.Navigator
             initialRouteName="Forms"
             drawerContent={props => <CustomDrawerContent {...props} />}
             screenOptions={{
               headerStyle: { backgroundColor: toolbarColor },
               headerTintColor: '#fff',
-              // Drawer active item styling
               drawerActiveTintColor: '#ffffff',
               drawerActiveBackgroundColor: toolbarColor,
               drawerInactiveTintColor: '#333',
@@ -45,9 +45,25 @@ export default function App() {
                 headerTitle: 'Perfil de Usuario'
               }} 
             />
+            <Drawer.Screen 
+              name="Display" 
+              component={DisplayScreen} 
+              options={{ 
+                title: 'Display de usuario' 
+              }} 
+            />
+            <Drawer.Screen
+              name="Prueba"
+              component={PruebaScreen}
+              options={{
+                title: 'Prueba',
+                headerTitle: 'Vista de Prueba'
+              }}
+            />
           </Drawer.Navigator>
-        </NavigationContainer>
-      </ThemeContext.Provider>
-    </GluestackUIProvider>
+         
+        </GluestackUIProvider>
+      </NavigationContainer>
+    </ThemeContext.Provider>
   );
 }
